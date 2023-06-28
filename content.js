@@ -1,8 +1,5 @@
 window.addEventListener("load", () => {
   console.log("Website loaded");
-  //   const container = document.getElementsByClassName("gK")[1];
-  //   container?.appendChild(respondedBtn);
-
   async function postData(data) {
     console.log("Posting data " + JSON.stringify(data));
 
@@ -39,14 +36,10 @@ window.addEventListener("load", () => {
 
   const observer = new MutationObserver(function (mutationsList, observer) {
     for (let mutation of mutationsList) {
-      if (
-        document.getElementsByClassName("gK")?.length > 0 &&
-        document.getElementsByClassName("gK")[1]?.lastChild?.tagName !==
-          "BUTTON"
-      ) {
+      if (document.querySelector(".hj")?.lastChild?.tagName !== "BUTTON") {
         const respondedBtn = document.createElement("button");
         respondedBtn.innerText = "Responded";
-        const container = document.getElementsByClassName("gK")[1];
+        const container = document.querySelector(".hj");
 
         let email = document
           .getElementsByClassName("go")[0]
@@ -109,6 +102,7 @@ window.addEventListener("load", () => {
         };
 
         respondedBtn.style.width = "130px";
+        respondedBtn.style.margin = "10px";
         respondedBtn.style.height = "40px";
         respondedBtn.style.color = "#fff";
         respondedBtn.style.borderRadius = "5px";
