@@ -108,7 +108,49 @@ window.addEventListener("load", () => {
           mailStatus,
         };
 
+        respondedBtn.style.width = "130px";
+        respondedBtn.style.height = "40px";
+        respondedBtn.style.color = "#fff";
+        respondedBtn.style.borderRadius = "5px";
+        respondedBtn.style.padding = "10px 25px";
+        respondedBtn.style.fontFamily = "'Lato', sans-serif";
+        respondedBtn.style.fontWeight = "500";
+        respondedBtn.style.background = "#030303";
+        respondedBtn.style.cursor = "pointer";
+        respondedBtn.style.transition = "all 0.3s ease";
+        respondedBtn.style.position = "relative";
+        respondedBtn.style.display = "inline-block";
+        respondedBtn.style.outline = "none";
+
+        // Create the select element
+        const selectElement = document.createElement("select");
+
+        // Define the options
+        const options = [
+          "Non-technical",
+          "Technical",
+          "Feedback",
+          "Escalation",
+        ];
+        // Create and append options to the select element
+        options.forEach((optionText) => {
+          const option = document.createElement("option");
+          option.text = optionText;
+          selectElement.appendChild(option);
+        });
+
+        selectElement.style.zIndex = 1000;
+        selectElement.style.padding = "10px";
+        selectElement.style.marginRight = "10px";
+
+        selectElement.addEventListener("change", (event) => {
+          data.mailType = event.target.value;
+        });
+
+        container?.appendChild(selectElement);
+        console.log("Select element created");
         container?.appendChild(respondedBtn);
+        console.log("Responded button added to container");
         respondedBtn.addEventListener("click", () => {
           postData(data);
           console.log("data posted", data);
