@@ -1,5 +1,45 @@
 window.addEventListener("load", () => {
   console.log("Website loaded");
+  function showToast(message) {
+    const toastContainer = document.querySelector("body");
+
+    // Create a new toast element
+    const toast = document.createElement("div");
+    toast.textContent = message;
+
+    // Apply CSS styles to the toast element
+    toast.style.backgroundColor = "#333";
+    toast.style.color = "#fff";
+    toast.style.padding = "12px 20px";
+    toast.style.borderRadius = "4px";
+    toast.style.marginBottom = "10px";
+    toast.style.opacity = "0";
+    toast.style.transition = "opacity 0.3s ease";
+    toast.style.zIndex = "10000";
+    toast.style.position = "absolute";
+    toast.style.top = "10px";
+    toast.style.left = "10px";
+
+    // Show the toast
+    setTimeout(() => {
+      toast.style.opacity = "1";
+    }, 100);
+
+    // Append the toast to the container
+    toastContainer.appendChild(toast);
+
+    // Remove the toast after 3 seconds
+    setTimeout(() => {
+      toast.style.opacity = "0";
+
+      // Remove the toast element from the DOM after the transition ends
+      toast.addEventListener("transitionend", () => {
+        toast.remove();
+      });
+    }, 3000);
+  }
+
+  // Usage:
   async function postData(data) {
     console.log("Posting data " + JSON.stringify(data));
 
@@ -15,8 +55,14 @@ window.addEventListener("load", () => {
       }
     )
       .then((res) => res.json())
-      .then((result) => console.log("Result", result))
-      .catch((err) => console.log("Error from backend " + err));
+      .then((result) => {
+        showToast(result?.message || "Success!");
+        return result;
+      })
+      .catch((err) => {
+        console.log("Error from backend " + err);
+        showToast(err?.message || "Error!");
+      });
 
     console.log(result);
   }
