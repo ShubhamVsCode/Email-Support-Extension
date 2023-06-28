@@ -36,10 +36,10 @@ window.addEventListener("load", () => {
 
   const observer = new MutationObserver(function (mutationsList, observer) {
     for (let mutation of mutationsList) {
-      if (document.querySelector(".hj")?.lastChild?.tagName !== "BUTTON") {
+      if (document.querySelector(".ade")?.lastChild?.tagName !== "BUTTON") {
         const respondedBtn = document.createElement("button");
         respondedBtn.innerText = "Responded";
-        const container = document.querySelector(".hj");
+        const container = document.querySelector(".ade");
 
         let email = document
           .getElementsByClassName("go")[0]
@@ -136,6 +136,7 @@ window.addEventListener("load", () => {
         selectElement.style.zIndex = 1000;
         selectElement.style.padding = "10px";
         selectElement.style.marginRight = "10px";
+        selectElement.style.marginLeft = "15px";
 
         selectElement.addEventListener("change", (event) => {
           data.mailType = event.target.value;
