@@ -1,6 +1,3 @@
-const respondedBtn = document.createElement("button");
-respondedBtn.innerText = "Responded";
-
 window.addEventListener("load", () => {
   console.log("Website loaded");
   //   const container = document.getElementsByClassName("gK")[1];
@@ -47,6 +44,8 @@ window.addEventListener("load", () => {
         document.getElementsByClassName("gK")[1]?.lastChild?.tagName !==
           "BUTTON"
       ) {
+        const respondedBtn = document.createElement("button");
+        respondedBtn.innerText = "Responded";
         const container = document.getElementsByClassName("gK")[1];
 
         let email = document
@@ -109,13 +108,11 @@ window.addEventListener("load", () => {
           mailStatus,
         };
 
+        container?.appendChild(respondedBtn);
         respondedBtn.addEventListener("click", () => {
-          //   copyToClipboard(textToCopy);
           postData(data);
           console.log("data posted", data);
         });
-
-        container?.appendChild(respondedBtn);
       }
 
       if (mutation.type === "childList") {
