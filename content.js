@@ -89,13 +89,13 @@ window.addEventListener("load", () => {
             fullEmail.indexOf(")")
           );
           if (fullEmail === "query@ineuron.ai") {
-            fullEmail = "Ineuron";
+            fullEmail = "Query_ineuron";
           } else if (fullEmail === "support@pwskills.com") {
-            fullEmail = "PWSkills";
+            fullEmail = "Pw_Skills";
           }
         }
         let platform = fullEmail;
-        let mailType = "Non Tech";
+        let mailType = "Non-technical";
         let mailStatus = "Open";
 
         const data = {
