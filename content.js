@@ -111,15 +111,43 @@ window.addEventListener("load", () => {
             );
         }
 
-        if (email) {
-          const emailContent =
-            document.querySelector(".iA.g6").innerText ||
-            document.querySelector(".gmail_attr")?.innerText;
-          if (emailContent.includes("Forwarded message")) {
+        // Getting the email address of Forwarded message from the email content
+        if (
+          email &&
+          (email?.includes("@ineuron.ai") ||
+            email?.includes("@pwskills.com") ||
+            email?.includes("@pw.live"))
+        ) {
+          let emailContent;
+          if (
+            document
+              .querySelector(".iA.g6")
+              ?.innerText?.includes("Forwarded message")
+          ) {
+            emailContent = document.querySelector(".iA.g6")?.innerText;
+          } else if (
+            document
+              .querySelector(".gmail_attr")
+              ?.innerText?.includes("Forwarded message")
+          ) {
+            emailContent = document.querySelector(".gmail_attr")?.innerText;
+          }
+
+          if (emailContent?.includes("Forwarded message")) {
             email = emailContent.substring(
               emailContent.indexOf("<") + 1,
               emailContent.indexOf(">")
             );
+          }
+
+          if (
+            email?.includes("@ineuron.ai") ||
+            email?.includes("@pwskills.com") ||
+            email?.includes("@pw.live")
+          ) {
+            email = document
+              .querySelectorAll(".gF.gK")[0]
+              .firstChild.getAttribute("email");
           }
         }
 
