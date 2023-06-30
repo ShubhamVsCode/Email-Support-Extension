@@ -111,6 +111,16 @@ window.addEventListener("load", () => {
             );
         }
 
+        if (email) {
+          const emailContent = document.querySelector(".gmail_attr")?.innerText;
+          if (emailContent.includes("Forwarded message")) {
+            email = emailContent.substring(
+              emailContent.indexOf("<") + 1,
+              emailContent.indexOf(">")
+            );
+          }
+        }
+
         let date = new Date(document.getElementsByClassName("g3")[0]?.title);
         let subject = document.getElementsByClassName("hP")[0]?.innerText;
         let smeName = localStorage.getItem("name");
@@ -188,6 +198,19 @@ window.addEventListener("load", () => {
           data.mailType = event.target.value;
         });
 
+        const emailInput = document.createElement("input");
+        emailInput.type = "text";
+        emailInput.value = email;
+        emailInput.addEventListener("change", (event) => {
+          emailInput.value = event.target.value;
+          email = event.target.value;
+          data.email = event.target.value;
+        });
+        emailInput.style.padding = "10px 5px";
+        emailInput.style.marginLeft = "10px";
+
+        container?.appendChild(emailInput);
+        console.log("Input element created");
         container?.appendChild(selectElement);
         console.log("Select element created");
         container?.appendChild(respondedBtn);
