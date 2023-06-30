@@ -112,7 +112,9 @@ window.addEventListener("load", () => {
         }
 
         if (email) {
-          const emailContent = document.querySelector(".gmail_attr")?.innerText;
+          const emailContent =
+            document.querySelector(".iA.g6").innerText ||
+            document.querySelector(".gmail_attr")?.innerText;
           if (emailContent.includes("Forwarded message")) {
             email = emailContent.substring(
               emailContent.indexOf("<") + 1,
