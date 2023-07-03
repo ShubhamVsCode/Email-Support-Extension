@@ -8,7 +8,7 @@ window.addEventListener("load", () => {
     toast.textContent = message;
 
     // Apply CSS styles to the toast element
-    toast.style.backgroundColor = "#333";
+    toast.style.backgroundColor = "#22CB5C";
     toast.style.color = "#fff";
     toast.style.padding = "12px 20px";
     toast.style.borderRadius = "4px";
