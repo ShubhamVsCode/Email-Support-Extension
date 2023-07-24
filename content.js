@@ -52,7 +52,6 @@ window.addEventListener("load", () => {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
         },
-        mode: "no-cors",
       }
     )
       .then((res) => res.json())
@@ -161,7 +160,7 @@ window.addEventListener("load", () => {
           smeName = name;
         }
         let fullEmail =
-          document.getElementsByClassName("gb_d gb_Fa gb_x")[0]?.ariaLabel;
+          document.getElementsByClassName("gb_d gb_Ha gb_x")[0]?.ariaLabel;
 
         if (fullEmail) {
           fullEmail = fullEmail.substring(
