@@ -52,6 +52,7 @@ window.addEventListener("load", () => {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
         },
+        mode: "no-cors",
       }
     )
       .then((res) => res.json())
