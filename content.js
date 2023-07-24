@@ -1,14 +1,16 @@
 window.addEventListener("load", () => {
   console.log("Website loaded");
-  function showToast(message) {
+  function showToast(message, err) {
     const toastContainer = document.querySelector("body");
-
     // Create a new toast element
     const toast = document.createElement("div");
     toast.textContent = message;
-
     // Apply CSS styles to the toast element
-    toast.style.backgroundColor = "#22CB5C";
+    if (err) {
+      toast.style.backgroundColor = "#C70039";
+    } else {
+      toast.style.backgroundColor = "#22CB5C";
+    }
     toast.style.color = "#fff";
     toast.style.padding = "12px 20px";
     toast.style.borderRadius = "4px";
@@ -19,30 +21,24 @@ window.addEventListener("load", () => {
     toast.style.position = "absolute";
     toast.style.top = "10px";
     toast.style.left = "10px";
-
     // Show the toast
     setTimeout(() => {
       toast.style.opacity = "1";
     }, 100);
-
     // Append the toast to the container
     toastContainer.appendChild(toast);
-
     // Remove the toast after 3 seconds
     setTimeout(() => {
       toast.style.opacity = "0";
-
       // Remove the toast element from the DOM after the transition ends
       toast.addEventListener("transitionend", () => {
         toast.remove();
       });
-    }, 3000);
+    }, 5000);
   }
-
   // Usage:
   async function postData(data) {
     console.log("Posting data " + JSON.stringify(data));
-
     const result = await fetch(
       "https://brown-artist-oykby.pwskills.app:4000/",
       {
@@ -61,12 +57,10 @@ window.addEventListener("load", () => {
       })
       .catch((err) => {
         console.log("Error from backend " + err);
-        showToast(err?.message || "Error!");
+        showToast(err?.message || "Error!", err);
       });
-
     console.log(result);
   }
-
   function copyToClipboard(text) {
     navigator.clipboard
       .writeText(text)
@@ -77,23 +71,19 @@ window.addEventListener("load", () => {
         console.error("Failed to copy text to clipboard:", error);
       });
   }
-
   const targetElement = document.querySelector("body");
-
   const observer = new MutationObserver(function (mutationsList, observer) {
     for (let mutation of mutationsList) {
       if (document.querySelector(".ade")?.lastChild?.tagName !== "BUTTON") {
         const respondedBtn = document.createElement("button");
         respondedBtn.innerText = "Responded";
         const container = document.querySelector(".ade");
-
         let email = document
           .getElementsByClassName("go")[0]
           ?.innerText.substring(
             1,
             document.getElementsByClassName("go")[0].innerText.length - 1
           );
-
         if (!email) {
           const showDetailBtn = document.querySelector(
             "[aria-label='Show details']"
@@ -102,7 +92,6 @@ window.addEventListener("load", () => {
             showDetailBtn.click();
             showDetailBtn.click();
           }
-
           email = document
             .getElementsByClassName("go")[0]
             ?.innerText.substring(
@@ -110,7 +99,6 @@ window.addEventListener("load", () => {
               document.getElementsByClassName("go")[0].innerText.length - 1
             );
         }
-
         // Getting the email address of Forwarded message from the email content
         if (
           email &&
@@ -132,14 +120,12 @@ window.addEventListener("load", () => {
           ) {
             emailContent = document.querySelector(".gmail_attr")?.innerText;
           }
-
           if (emailContent?.includes("Forwarded message")) {
             email = emailContent.substring(
               emailContent.indexOf("<") + 1,
               emailContent.indexOf(">")
             );
           }
-
           if (
             email?.includes("@ineuron.ai") ||
             email?.includes("@pwskills.com") ||
@@ -150,7 +136,6 @@ window.addEventListener("load", () => {
               .firstChild.getAttribute("email");
           }
         }
-
         let date = new Date(document.getElementsByClassName("g3")[0]?.title);
         let subject = document.getElementsByClassName("hP")[0]?.innerText;
         let smeName = localStorage.getItem("name");
@@ -161,7 +146,6 @@ window.addEventListener("load", () => {
         }
         let fullEmail =
           document.getElementsByClassName("gb_d gb_Ha gb_x")[0]?.ariaLabel;
-
         if (fullEmail) {
           fullEmail = fullEmail.substring(
             fullEmail.indexOf("(") + 1,
@@ -176,7 +160,6 @@ window.addEventListener("load", () => {
         let platform = fullEmail;
         let mailType = "Non-technical";
         let mailStatus = "Open";
-
         const data = {
           email,
           date,
@@ -186,7 +169,6 @@ window.addEventListener("load", () => {
           smeName,
           mailStatus,
         };
-
         respondedBtn.style.width = "130px";
         respondedBtn.style.margin = "10px";
         respondedBtn.style.height = "40px";
@@ -201,10 +183,8 @@ window.addEventListener("load", () => {
         respondedBtn.style.position = "relative";
         respondedBtn.style.display = "inline-block";
         respondedBtn.style.outline = "none";
-
         // Create the select element
         const selectElement = document.createElement("select");
-
         // Define the options
         const options = [
           "Non-technical",
@@ -218,16 +198,13 @@ window.addEventListener("load", () => {
           option.text = optionText;
           selectElement.appendChild(option);
         });
-
         selectElement.style.zIndex = 1000;
         selectElement.style.padding = "10px";
         selectElement.style.marginRight = "10px";
         selectElement.style.marginLeft = "15px";
-
         selectElement.addEventListener("change", (event) => {
           data.mailType = event.target.value;
         });
-
         const emailInput = document.createElement("input");
         emailInput.type = "text";
         emailInput.value = email;
@@ -238,7 +215,6 @@ window.addEventListener("load", () => {
         });
         emailInput.style.padding = "10px 5px";
         emailInput.style.marginLeft = "10px";
-
         container?.appendChild(emailInput);
         console.log("Input element created");
         container?.appendChild(selectElement);
@@ -250,7 +226,6 @@ window.addEventListener("load", () => {
           console.log("data posted", data);
         });
       }
-
       if (mutation.type === "childList") {
         console.log("Child elements have been added or removed.");
       } else if (mutation.type === "attributes") {
@@ -258,13 +233,11 @@ window.addEventListener("load", () => {
       }
     }
   });
-
   // Configuration for the observer
   const config = {
     childList: true, // Observe additions/removals of child elements
     subtree: true, // Observe changes in descendant elements as well
   };
-
   // Start observing the target element with the provided configuration
   observer.observe(targetElement, config);
 });
