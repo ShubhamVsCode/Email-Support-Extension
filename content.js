@@ -145,7 +145,7 @@ window.addEventListener("load", () => {
           smeName = name;
         }
         let fullEmail =
-          document.getElementsByClassName("gb_d gb_Ha gb_x")[0]?.ariaLabel;
+          document.getElementsByClassName("gb_d")[1]?.ariaLabel;
         if (fullEmail) {
           fullEmail = fullEmail.substring(
             fullEmail.indexOf("(") + 1,
