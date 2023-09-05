@@ -39,17 +39,14 @@ window.addEventListener("load", () => {
   // Usage:
   async function postData(data) {
     console.log("Posting data " + JSON.stringify(data));
-    const result = await fetch(
-      "https://brown-artist-oykby.pwskills.app:4000/",
-      {
-        body: JSON.stringify(data),
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-      }
-    )
+    const result = await fetch("https://gold-bright-trout.cyclic.app/", {
+      body: JSON.stringify(data),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
       .then((res) => res.json())
       .then((result) => {
         showToast(result?.message || "Success!");
@@ -147,8 +144,7 @@ window.addEventListener("load", () => {
           localStorage.setItem("name", name);
           smeName = name;
         }
-        let fullEmail =
-          document.getElementsByClassName("gb_d")[1]?.ariaLabel;
+        let fullEmail = document.getElementsByClassName("gb_d")[1]?.ariaLabel;
         if (fullEmail) {
           fullEmail = fullEmail.substring(
             fullEmail.indexOf("(") + 1,
