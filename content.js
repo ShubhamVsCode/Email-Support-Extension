@@ -147,7 +147,8 @@ window.addEventListener("load", () => {
           localStorage.setItem("name", name);
           smeName = name;
         }
-        let fullEmail = document.getElementsByClassName("gb_d")[1]?.ariaLabel;
+        let fullEmail =
+          document.getElementsByClassName("gb_d")[1]?.ariaLabel;
         if (fullEmail) {
           fullEmail = fullEmail.substring(
             fullEmail.indexOf("(") + 1,
