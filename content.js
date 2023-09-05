@@ -74,10 +74,13 @@ window.addEventListener("load", () => {
   const targetElement = document.querySelector("body");
   const observer = new MutationObserver(function (mutationsList, observer) {
     for (let mutation of mutationsList) {
-      if (document.querySelector(".ade")?.lastChild?.tagName !== "BUTTON") {
+      if (document.querySelector(".hj")?.lastChild?.tagName !== "BUTTON") {
         const respondedBtn = document.createElement("button");
         respondedBtn.innerText = "Responded";
-        const container = document.querySelector(".ade");
+        const container = document.querySelector(".hj");
+        container.style.display = "flex";
+        container.style.alignItems = "center";
+
         let email = document
           .getElementsByClassName("go")[0]
           ?.innerText.substring(
@@ -144,8 +147,7 @@ window.addEventListener("load", () => {
           localStorage.setItem("name", name);
           smeName = name;
         }
-        let fullEmail =
-          document.getElementsByClassName("gb_d gb_Ha gb_x")[0]?.ariaLabel;
+        let fullEmail = document.getElementsByClassName("gb_d")[1]?.ariaLabel;
         if (fullEmail) {
           fullEmail = fullEmail.substring(
             fullEmail.indexOf("(") + 1,
@@ -240,4 +242,13 @@ window.addEventListener("load", () => {
   };
   // Start observing the target element with the provided configuration
   observer.observe(targetElement, config);
+});
+
+const form = document.createElement("form");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  // Send the data to the server
+
+  onsubmit();
 });
