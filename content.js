@@ -39,7 +39,7 @@ window.addEventListener("load", () => {
   // Usage:
   async function postData(data) {
     console.log("Posting data " + JSON.stringify(data));
-    const result = await fetch("https://gold-bright-trout.cyclic.app/", {
+    const result = await fetch("hhttps://graceful-gabardine-ox.cyclic.app/", {
       body: JSON.stringify(data),
       method: "POST",
       headers: {
